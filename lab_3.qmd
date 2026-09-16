@@ -1,0 +1,288 @@
+---
+title: "STAT 386 Lab 3: Exploring General Conference Data with pandas"
+author: "Your Name"
+format:
+  html:
+    toc: true
+    embed-resources: true
+    code-fold: false
+execute:
+  echo: true
+  warning: true
+jupyter: python3
+---
+
+## Overview
+
+In this lab, you will use **pandas** to explore a dataset of General Conference
+talks. You will practice:
+
+- loading and inspecting a DataFrame;
+- selecting and filtering observations;
+- sorting values;
+- using `value_counts()`;
+- calculating summary statistics;
+- using `groupby()`;
+- creating a new variable; and
+- using your analysis to answer a question.
+
+Your goal is not only to write pandas code, but also to explain what your
+results mean.
+
+## Setup
+
+The following code imports pandas and loads `data/talks.csv` into a DataFrame
+named `talks`. Run this code before beginning the lab.
+
+```{python}
+import pandas as pd
+
+talks = pd.read_csv("data/talks.csv")
+```
+
+# Part 1: Meet the Data
+
+## 1. Inspect the dataset
+
+Display the first few rows of `talks`. Limit the output to the following
+columns so that it is easy to read:
+
+- `talk_name`
+- `speaker`
+- `conference`
+- `num_words`
+
+```{python}
+# Write your code here.
+```
+
+Use pandas to determine the number of rows and columns in the dataset.
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with a description of what one row in
+the dataset represents.
+
+## 2. Columns and data types
+
+Display the column names.
+
+```{python}
+# Write your code here.
+```
+
+Display the data type of each variable.
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with the name of one numeric variable
+and one non-numeric variable.
+
+## 3. Missing values
+
+Determine how many missing values appear in each column.
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with the names of the variables that
+contain missing values.
+
+## Data dictionary
+
+| Variable | Description |
+|---|---|
+| `talk_name` | Title of the talk |
+| `speaker` | Name of the speaker |
+| `session` | Conference session in which the talk was given |
+| `date` | Date of the talk |
+| `month` | Conference month |
+| `year` | Conference year |
+| `conference` | Conference name, such as `April 2020` |
+| `role` | Speaker's leadership role at the time of the conference |
+| `speaker_order` | Speaker's order within the session |
+| `num_words` | Number of words in the talk |
+| `runtime` | Recorded runtime of the talk |
+| `talk_number` | Talk order within the session |
+| `link` | Link to the talk |
+| `kicker` | Short summary of the talk |
+
+# Part 2: Focus on Recent Conferences
+
+For the rest of the lab, use only talks from **2018 through 2020, inclusive**.
+Filter `talks` and save the result as a new DataFrame named `recent_talks`.
+Use `.copy()` after filtering so that `recent_talks` can be modified safely
+later in the lab.
+
+```{python}
+# Create recent_talks here.
+```
+
+::: {.callout-tip}
+## pandas reminders
+
+Here are general forms for several operations used in this lab:
+
+```python
+df[filtering_condition]
+df["column"].value_counts()
+df.sort_values("column", ascending=False)
+df.groupby("grouping_column")["numeric_column"].mean()
+```
+:::
+
+## 4. Check the subset
+
+How many observations are in `recent_talks`? How many different conferences
+are represented?
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with the number of talks and the number
+of conferences in `recent_talks`.
+
+# Part 3: Find Observations
+
+## 5. Filter by conference
+
+Choose one conference represented in `recent_talks`. Filter `recent_talks` to
+that conference and display the `talk_name`, `speaker`, `conference`, and
+`num_words` columns.
+
+```{python}
+# Write your code here.
+```
+
+## 6. Filter by speaker
+
+Choose one speaker and display all of that speaker's talks in `recent_talks`.
+Display only the `talk_name`, `speaker`, `conference`, and `num_words` columns.
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with the speaker you chose and the
+number of talks they gave from 2018 through 2020.
+
+## 7. Sort by word count
+
+Using `recent_talks`, find the five talks with the largest values of
+`num_words`. Display only:
+
+- `talk_name`
+- `speaker`
+- `conference`
+- `num_words`
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with the name of the talk that has the
+largest word count in `recent_talks`.
+
+# Part 4: Count and Summarize
+
+## 8. Most frequent speakers
+
+Use `value_counts()` on the `speaker` column to determine which speakers
+appear most often in `recent_talks`.
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with an observation about the speakers
+who appear most frequently.
+
+## 9. Mean and median word count
+
+Calculate the mean and median of `num_words` in `recent_talks`.
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with a comparison of the mean and
+median.
+
+## 10. Talks by session
+
+Count the number of talks in each session in `recent_talks`.
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with the session that contains the most
+talks and the number of talks in that session.
+
+## 11. Average word count by conference
+
+Use `groupby()` to calculate the average `num_words` for each conference in
+`recent_talks`. Sort the results from largest to smallest.
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Replace this sentence with the conference that has the highest
+average word count and its approximate average.
+
+# Part 5: Create a New Variable
+
+## 12. Classify long talks
+
+Create a variable named `long_talk` in `recent_talks`. A talk should be
+classified as long when its `num_words` value is greater than the median word
+count of `recent_talks`.
+
+```{python}
+# Create the long_talk variable here.
+```
+
+Count how many talks are classified as `True` and `False`.
+
+```{python}
+# Write your code here.
+```
+
+**Your answer:** Explain what `long_talk` represents. Compare the number of
+long and short talks. Is this distribution what you would expect based on how
+`long_talk` was defined? Explain.
+
+# Part 6: Ask Your Own Question
+
+Choose one simple question that you would like to answer using `recent_talks`.
+Your question should be answerable using techniques from this lab, such as:
+
+- selecting columns;
+- filtering;
+- sorting;
+- `value_counts()`;
+- summary statistics; or
+- `groupby()`.
+
+## Your question
+
+Replace this sentence with your question.
+
+## Your analysis
+
+```{python}
+# Write pandas code that answers your question.
+```
+
+## Your conclusion
+
+**Your answer:** Answer your question in one or two sentences using the result
+of your analysis.
+
