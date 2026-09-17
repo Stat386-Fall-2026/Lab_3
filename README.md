@@ -73,6 +73,31 @@ git push
 
 Follow the submission directions provided in Canvas.
 
+## Generate the Follow-Up Reflection Issue
+
+Create a new Issue using the **Lab 3 Complete** Issue template if it is available.
+
+Use the following information:
+
+**Title**
+
+```text
+Lab 3 complete
+```
+The description of this issue can be empty.
+
+Post the Lab 3 processing command in a new comment:
+
+```text
+@local-llm-user process config-dir: Lab_3/ in instructor-repo: Stat386-Fall-2026/Instructor_Repo
+```
+
+Again, the command must be posted as a **comment**, not in the Issue description.
+
+The collaborator should create a new job. Once processing is complete, the course collaborator should create a new Issue containing review questions for Lab 3.
+
+Answer the questions as a comment in the newly created issue to finish the lab.
+
 ## Before you finish
 
 - [ ] Your name appears in the document header.
